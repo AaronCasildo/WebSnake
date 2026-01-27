@@ -15,6 +15,11 @@ wasm2wat - Converts WebAssembly binary files (.wasm) to WebAssembly Text format 
 wasm2wat sum.wasm -o sum.wat
 ```
 
+**Usage to convert a .wat file to .wasm**
+```
+wasm2wat sum.wat -o sum.wasm
+```
+
 ---
 
 ## Setting Up Node.js Development Server with Webpack
