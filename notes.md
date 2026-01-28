@@ -65,3 +65,8 @@ npm run dev
 ```
 
 The server will start and watch for file changes, automatically reloading the browser when code is updated.
+
+## Refresh the PATH environment on VSpowershell:
+```
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+```
