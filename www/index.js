@@ -1,8 +1,20 @@
 async function init(){
+
+    const importObject = {
+        console: {
+            log:() => {
+                console.log("Just logging stuff");
+            },
+            error: () => {
+                console.log("Error");
+            }
+        }
+
+    }
             const response = await fetch("sum.wasm");
             const buffer = await response.arrayBuffer();
             // debugger
-            const wasm = await WebAssembly.instantiate(buffer);
+            const wasm = await WebAssembly.instantiate(buffer,importObject);
 
             const sumFunction = wasm.instance.exports.sum;
             const result = sumFunction(9, 9);
