@@ -1,6 +1,11 @@
 async function init(){
+    const memory = new WebAssembly.Memory({initial:1});
 
     const importObject = {
+        js: {
+            mem:memory
+        },
+
         console: {
             log:() => {
                 console.log("Just logging stuff");
@@ -13,13 +18,12 @@ async function init(){
     }
         const response = await fetch("sum.wasm");
         const buffer = await response.arrayBuffer();
-        // debugger
+        debugger
         const wasm = await WebAssembly.instantiate(buffer,importObject);
-
+        debugger
         const sumFunction = wasm.instance.exports.sum;
-        const wasmMemory = wasm.instance.exports.memory;
 
-        const uint8Array = new Uint8Array(wasmMemory.buffer,0,40);
+        const uint8Array = new Uint8Array(memory.buffer,0,40);
         const hitext = new TextDecoder().decode(uint8Array);
         console.log("Contents of WASM Memory:", hitext);
 
